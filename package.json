@@ -1,6 +1,6 @@
 {
   "name": "mymedium-post",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A lightweight TypeScript/JavaScript library to fetch and parse Medium blog posts from RSS feeds with clean error handling.",
   "keywords": [
     "medium",
