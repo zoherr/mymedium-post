@@ -1,7 +1,3 @@
-Here is a **professional, production-grade README.md** for your NPM package **mymedium-post** — written exactly like top-tier open-source libraries.
-You can paste this directly into your repo.
-
----
 
 # 📦 **mymedium-post**
 
