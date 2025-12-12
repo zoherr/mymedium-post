@@ -1,34 +1,48 @@
-name: Publish npm
+name: Publish to npm
 
 on:
   push:
     branches:
       - main
-    # Optional: only publish when package.json version changes
+    # Optional: Only publish when package.json changes
     # paths:
-    #   - "my-package/package.json"
+    #   - "package.json"
 
 jobs:
   publish:
+    name: Publish Package
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
 
       - name: Build package
-        run: npm run build --if-present
+        run: npm run build
 
       - name: Publish to npm
-        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "❌ ERROR: NPM_AUTH_TOKEN secret is missing."
+            exit 1
+          fi
+          npm publish --access public
+
+      - name: Tag release (optional)
+        if: success()
+        run: |
+          VERSION=$(jq -r ".version" package.json)
+          git tag "v$VERSION"
+          git push --tags
