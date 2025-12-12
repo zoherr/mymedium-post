@@ -1,6 +1,6 @@
 {
   "name": "mymedium-post",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight TypeScript/JavaScript library to fetch and parse Medium blog posts from RSS feeds with clean error handling.",
   "keywords": [
     "medium",
@@ -33,17 +33,14 @@
   "bugs": {
     "url": "https://github.com/zoherr/mymedium-post/issues"
   },
-
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
-
   "files": [
     "dist",
     "src",
     "README.md"
   ],
-
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
@@ -51,20 +48,16 @@
     "prepublishOnly": "npm run build",
     "test": "echo \"No tests yet\""
   },
-
   "engines": {
     "node": ">=16.0.0"
   },
-
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
   },
-
   "dependencies": {},
-
   "devDependencies": {
     "typescript": "^5.6.0"
   }
