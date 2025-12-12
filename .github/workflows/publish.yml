@@ -40,9 +40,3 @@ jobs:
           fi
           npm publish --access public
 
-      - name: Tag release (optional)
-        if: success()
-        run: |
-          VERSION=$(jq -r ".version" package.json)
-          git tag "v$VERSION"
-          git push --tags
